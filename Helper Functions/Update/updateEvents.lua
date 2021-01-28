@@ -10,6 +10,9 @@ updateEvents.update = function()
         -- Grab the first event in the queue
         local event = g.events[1]
         
+        -- Perform an action based on the event logic table
+        g.eventLogic.event(event)
+        
         -- First in, first out
         table.remove(g.events,1)
     end

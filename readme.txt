@@ -1,5 +1,5 @@
 ﻿Magical Girl Shmup
-Version 0.1.0
+Version 0.2.0
 
 Copyright © 2021 Elias Mote
 Copyright © 2021 Roc Studios
@@ -17,9 +17,20 @@ This software may be not be reproduced under any circumstances except for person
 
 II. Version History
 
+------------------------
+V0.2.0 - Current version
+------------------------
+-- Added the ability to choose different characters at the title screen
+(z picks flame sorceress, x picks ice witch, c picks lightning mage)
+-- Added the ability to fire shots with z
+-- Added a sample enemy (the purple square)
+-- Shots can kill enemies and disappear offscreen
+-- Refactored code into multiple files
+-- Added more skeleton code
+-- Adjusted default font size
 
 ------------------------
-V0.1.0 - Current version
+V0.1.0
 ------------------------
 - Created the title screen
 - Created the game screen
@@ -31,13 +42,13 @@ The 3 magical women need to travel to grandma's house to deliver her an item she
 
 IV. Controls
 - Move around with the directional keys
+- Shoot with the "z" key
 
 V. Contact
 Contact me with questions or comments at rulerofchaosstudios@gmail.com
 Twitter: twitter.com/Roc_Studios
 Itch.io page: rocstudios.itch.io
 Game jolt page: gamejolt.com/@Roc_Studios
-
 
 VI. Credits
 

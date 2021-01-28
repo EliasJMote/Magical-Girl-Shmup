@@ -1,11 +1,8 @@
 local createGame = {}
 
-    function createGame.create()
+    function createGame.create(player)
 
         local g = GLOBALS
-        
-        -- Initialize scale of the game
-        --g.scale = {}
         
         -- Initialize events table
         g.events = {}
@@ -13,10 +10,10 @@ local createGame = {}
         -- current text onscreen
         --g.curText = {}
     
-        -- player table
+        -- Player table
         g.players = {}
         g.players[1] = {}
-        g.players[1].img = g.images.playerCharacters.flameSorceress1
+        g.players[1].img = player
         g.players[1].x = 64
         g.players[1].y = 88
         g.players[1].w = 13
@@ -26,13 +23,29 @@ local createGame = {}
         g.players[1].currentHealth = 5
         g.players[1].maximumHealth = 5
         g.players[1].isInvincible = false
-        g.players[1].invincibilityTimer = 0
+        g.players[1].shots = {}
+        g.players[1].shot = {x=g.players[1].x+g.players[1].w/2,y=g.players[1].y,w=2,h=2,img=nil}
+        g.players[1].canShoot = true
+        g.players[1].timers = {}
+        g.players[1].timers.invincibility = 0
+        g.players[1].timers.shot = 0
+        g.players[1].faction = "Player"
 
-        -- star field table
+        -- Initialize the enemies and their shot table
+        g.enemies = {}
+        g.enemyShots = {}
+
+        -- Initialize the power-up table
+        g.powerUps = {}
+
+        -- Star field table
         g.stars = {}
 
         g.timers = {}
+        g.timers.titleTimer = 0
         g.timers.gameTimer = 0
+        
+        table.insert(g.enemies,g.createEnemy.create({x=128,y=16}))
     end
 
 return createGame
