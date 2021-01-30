@@ -6,28 +6,36 @@ function loadManager.load()
 
     -- Load all helper functions
     -- Load all load functions
+    g.loadEnemyFormationTable  = require("Helper Functions/Load/loadEnemyFormationTable")
+    g.loadEnemyImages = require("Helper Functions/Load/Images/loadEnemyImages")
+    g.loadEnemyTable = require("Helper Functions/Load/loadEnemyTable")
     g.loadHelperFunctions = require("Helper Functions/Load/loadHelperFunctions")
     g.loadPlayerImages = require("Helper Functions/Load/Images/loadPlayerImages")
+    g.loadUI = require("Helper Functions/Load/Images/loadUI")
     
     -- Load all create functions
+    g.createEnemy = require("Helper Functions/Create/createEnemy")
     g.createEvent = require("Helper Functions/Create/createEvent")
     g.createGame = require("Helper Functions/Create/createGame")
-    g.createEnemy = require("Helper Functions/Create/createEnemy")
+    g.createPlayer = require("Helper Functions/Create/createPlayer")
     
     -- Load all update functions
     g.updateActor = require("Helper Functions/Update/updateActor")
     g.updateEvents = require("Helper Functions/Update/updateEvents")
     g.updateGameScreen = require("Helper Functions/Update/updateGameScreen")
+    g.updateLevelCompleteScreen = require("Helper Functions/Update/updateLevelCompleteScreen")
     g.updateManager = require("Helper Functions/Update/updateManager")
     
     -- Load all draw functions
     g.drawGameScreen = require("Helper Functions/Draw/drawGameScreen")
+    g.drawLevelCompleteScreen = require("Helper Functions/Draw/drawLevelCompleteScreen")
     g.drawManager = require("Helper Functions/Draw/drawManager")
     g.drawTitleScreen = require("Helper Functions/Draw/drawTitleScreen")
 
     -- Load other functions
     g.eventLogic = require("Helper Functions/eventLogic")
     g.keyPressedManager = require("Helper Functions/keyPressedManager")
+    g.spawnEnemies = require("Helper Functions/spawnEnemies")
 
     -- Set the scaler to use the nearest neighbor filter
     love.graphics.setDefaultFilter("nearest", "nearest", 0)
@@ -54,6 +62,14 @@ function loadManager.load()
     -- Initialize all images that the game uses
     g.images = {}
     g.images.playerCharacters = g.loadPlayerImages.load()
+    g.images.UI = g.loadUI.load()
+    g.images.enemies = g.loadEnemyImages.load()
+    
+    -- Load the enemy table
+    g.enemyTable = g.loadEnemyTable.load()
+    
+    -- Load the enemy formation tables
+    g.enemyFormationTable = g.loadEnemyFormationTable.load()
     
     -- Initialize game state
     g.state = "title"

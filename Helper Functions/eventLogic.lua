@@ -23,7 +23,7 @@ function eventLogic.event(event)
         
     elseif(event.name == "Move Actor Down") then
         -- Move down if possible
-        if(event.act.y < (g.gameHeight - event.act.h)) then
+        if(event.act.y < (g.gameHeight - event.act.h - 32)) then
             event.act.y = event.act.y + event.act.spd
         end
         

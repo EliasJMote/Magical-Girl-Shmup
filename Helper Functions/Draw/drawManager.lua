@@ -12,6 +12,9 @@ function drawManager.draw()
     
     elseif(g.state == "game") then
         g.drawGameScreen.draw()
+        
+    elseif(g.state == "level complete") then
+        g.drawLevelCompleteScreen.draw()
     end
     
     -- Set the game to sleep or return if needed to cap the frame rate

@@ -10,12 +10,27 @@ function updateManager.update()
     g.scale.x = love.graphics.getWidth()/g.gameWidth
     g.scale.y = love.graphics.getHeight()/g.gameHeight
     
+    if(g.state == "game") then
+        
+        -- Spawn in enemies
+        g.spawnEnemies.update()
+        
+        -- Update enemy movement
+        for i,e in ipairs(g.enemies) do
+            e.x = e.x + e.dx
+            e.y = e.y + e.dy
+        end
+    end
+    
     -- Update the event table
     g.updateEvents.update()
     
     -- Update the game screen
     if(g.state == "game") then
         g.updateGameScreen.update()
+        
+    elseif(g.state == "level complete") then
+        g.updateLevelCompleteScreen.update()
     end
 end
 

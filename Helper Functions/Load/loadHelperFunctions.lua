@@ -19,7 +19,7 @@ function g.deepCopy(a)
     return b
 end
 
--- rectangular collision
+-- AABB rectangular collision
 function g.rectCollision(a,b)
     if(a.x<b.x+b.w and a.x+a.w>b.x and a.y<b.y+b.h and a.y+a.h>b.y) then
         return true, b
@@ -96,7 +96,7 @@ function g.updateShot(s)
         if(g.rectCollision(s,e)) then
             table.remove(g.enemies,i)
             s.delete = true
-            --game.score = game.score + 100
+            g.players[1].score = g.players[1].score + 100
             --genexplosion(e.x,e.y)
             --sfx(1,0)
         end

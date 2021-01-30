@@ -1,5 +1,5 @@
 ﻿Magical Girl Shmup
-Version 0.2.0
+Version 0.3.0
 
 Copyright © 2021 Elias Mote
 Copyright © 2021 Roc Studios
@@ -18,7 +18,16 @@ This software may be not be reproduced under any circumstances except for person
 II. Version History
 
 ------------------------
-V0.2.0 - Current version
+V0.3.0 - Current version
+------------------------
+-- Added collision detection for the player
+-- The player will die when running out of health
+-- Added an enemy with sprite animation (phoenix)
+-- Added a game UI (containing health, score, area name)
+-- Animation for when the level is cleared (that brings the player back to the title screen)
+
+------------------------
+V0.2.0
 ------------------------
 -- Added the ability to choose different characters at the title screen
 (z picks flame sorceress, x picks ice witch, c picks lightning mage)
@@ -51,6 +60,8 @@ Itch.io page: rocstudios.itch.io
 Game jolt page: gamejolt.com/@Roc_Studios
 
 VI. Credits
+Programmer, Producer: Elias Mote
+Artist: David Harper
 
 Software:
 Engine: Love2d
