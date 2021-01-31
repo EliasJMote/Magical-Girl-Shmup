@@ -1,5 +1,5 @@
 ﻿Magical Girl Shmup
-Version 0.3.0
+Version 1.0.0
 
 Copyright © 2021 Elias Mote
 Copyright © 2021 Roc Studios
@@ -18,7 +18,13 @@ This software may be not be reproduced under any circumstances except for person
 II. Version History
 
 ------------------------
-V0.3.0 - Current version
+V0.1.0 - Current version
+------------------------
+- Game complete! (For the jam)
+- Details will be filled in later
+
+------------------------
+V0.3.0
 ------------------------
 -- Added collision detection for the player
 -- The player will die when running out of health

@@ -20,11 +20,36 @@ function spawnEnemies.update()
         end
     end]]
     
-    -- Spawn endless waves of phoenixes
-    if(g.timers.gameTimer % (60*5) == 0) then
-        for i,e in ipairs(g.enemyFormationTable.phoenix[math.random(1,3)]) do
+    -- Spawn waves of phoenixes
+    if(g.timers.gameTimer % (60*5) == 0 and g.timers.gameTimer < (60*15)) then
+        for i,e in ipairs(g.enemyFormationTable.phoenix[g.timers.gameTimer / (60*5) + 1]) do
             table.insert(g.enemies,g.deepCopy(e))
         end
+    end
+    
+    if(g.timers.gameTimer % (60*5) == 0 and g.timers.gameTimer == (60*15)) then
+        --for i,e in ipairs(g.enemyFormationTable.spikedBall[1]) do
+        for i,e in ipairs(g.enemyFormationTable.spikedBall[2]) do
+            table.insert(g.enemies,g.deepCopy(e))
+        end
+    end
+    
+    if(g.timers.gameTimer == (60*20)) then
+        for i,e in ipairs(g.enemyFormationTable.phoenix[4]) do
+            table.insert(g.enemies,g.deepCopy(e))
+        end
+    end
+    
+    if(g.timers.gameTimer == (60*25)) then
+        --for i,e in ipairs(g.enemyFormationTable.spikedBall[1]) do
+        for i,e in ipairs(g.enemyFormationTable.spikedBall[2]) do
+            table.insert(g.enemies,g.deepCopy(e))
+        end
+    end
+    
+    -- Boss comes in after a minute
+    if(g.timers.gameTimer == (60*30)) then
+        table.insert(g.enemies,g.createEnemy.create(g.enemyTable.shadowSage,128,0,0,0))
     end
 end
 

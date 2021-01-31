@@ -15,8 +15,15 @@ function updateGameScreen.update()
     for i,p in ipairs(g.players) do
         if not(p.isDead) then
             p = g.updateActor.update(p)
+        else
+            g.timers.deathTimer = g.timers.deathTimer + 1
+            if(g.timers.deathTimer > 60 * 5) then
+                g.state = "title"
+            end
         end
     end
+    
+    
     
     -- Update player shots
     for i,p in ipairs(g.players) do
@@ -28,12 +35,21 @@ function updateGameScreen.update()
         end
     end
     
+    -- Update enemy shots
+    for i=#g.enemyShots,1,-1 do
+        g.updateShot(g.enemyShots[i])
+        if(g.enemyShots[i].delete) then
+            table.remove(g.enemyShots,i)
+        end
+    end
+    
     -- Update enemies
     for i,e in ipairs(g.enemies) do
         e = g.updateActor.update(e)
         if(e.y > 240 - 24) then
             table.remove(g.enemies,i)
         end
+        e = g.updateEnemyAI.update(e)
     end
 
     -- Background star behavior
@@ -52,9 +68,11 @@ function updateGameScreen.update()
     end
 
     -- "Level complete" event (when the boss is defeated)
-    --[[if(g.timers.gameTimer > 60 * 6) then
-        g.state = "level complete"
-    end]]
+    if(g.isBossDefeated) then
+        if(g.timers.gameTimer > 60 * 6 + g.bossDefeatedTime) then
+            g.state = "level complete"
+        end
+    end
 
     -- Update the game timer
     g.timers.gameTimer = g.timers.gameTimer + 1

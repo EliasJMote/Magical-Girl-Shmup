@@ -11,11 +11,11 @@ function drawLevelCompleteScreen.draw()
             if(g.levelCompleteAnimation) then
                 for i=1,num do
                     love.graphics.setColor(1-i/num,1-i/num,1-i/num,1-i/num)
-                    love.graphics.draw(p.img,p.x,p.y - i * g.timers.levelCompleteAnimationTimer)
+                    love.graphics.draw(p.img[1],p.x,p.y - i * g.timers.levelCompleteAnimationTimer)
                 end
                 love.graphics.setColor(1,1,1,1)
             end
-            love.graphics.draw(p.img,p.x,p.y)
+            love.graphics.draw(p.img[1],p.x,p.y)
         end
     end
 end

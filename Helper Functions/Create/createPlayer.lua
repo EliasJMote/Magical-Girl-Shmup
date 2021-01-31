@@ -2,29 +2,40 @@ local createPlayer = {}
 
 function createPlayer.create(playerImage)
     
-    local player = {}
+    local g = GLOBALS
     
-    player.img = playerImage
-    player.x = 64
-    player.y = 88
-    player.w = 13
-    player.h = 29
-    player.spd = 1.25
-    player.hitBox = {}
-    player.currentHealth = 5
-    player.maximumHealth = 5
-    player.isInvincible = false
-    player.shots = {}
-    player.shot = {x=player.x+player.w/2,y=player.y,w=2,h=2,img=nil}
-    player.canShoot = true
-    player.timers = {}
-    player.timers.invincibility = 0
-    player.timers.shot = 0
-    player.faction = "Player"
-    player.isDead = false
-    player.score = 0
+    local p = {}
     
-    return player
+    p.img = playerImage
+    p.x = 64
+    p.y = 88
+    p.w = 13
+    p.h = 29
+    p.spd = 1.25
+    p.hitBox = {}
+    p.currentHealth = 5
+    p.maximumHealth = 5
+    p.isInvincible = false
+    p.shots = {}
+    
+    if(playerImage == g.images.playerCharacters.flameSorceress1) then
+        p.shot = {x=p.x+p.w/2,y=p.y,w=16,h=16,img=g.images.playerShots.fireBall2}
+    elseif(playerImage == g.images.playerCharacters.iceWitch1) then
+        p.shot = {x=p.x+p.w/2,y=p.y,w=16,h=16,img=g.images.playerShots.iceBall}
+    else
+        p.shot = {x=p.x+p.w/2,y=p.y,w=16,h=16,img=g.images.playerShots.elecBall}
+    end
+    
+    p.canShoot = true
+    p.timers = {}
+    p.timers.invincibility = 0
+    p.timers.shot = 0
+    p.faction = "Player"
+    p.isDead = false
+    p.score = 0
+    p.level = 1
+    
+    return p
 end
 
 return createPlayer

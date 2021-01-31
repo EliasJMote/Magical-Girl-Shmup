@@ -2,6 +2,10 @@ local loadHelperFunctions = {}
 
 local g = GLOBALS
 
+function g.getAngle(a,b)
+    return math.atan2((a.x-b.x),(a.y-b-y))
+end
+
 -- Rounding function
 function g.round(x)
     return math.floor(x + 0.5)
@@ -63,11 +67,12 @@ function g.createStar(x,y,spd)
     s.x = x
     s.y = y
     s.spd = spd or 1
+    s.col = {math.random(1,256)/256,math.random(1,256)/256,math.random(1,256)/256,1}
     return s
 end
 
 -- Create a shot
-function g.createShot(x,y,w,h,dx,dy,img)
+function g.createShot(x,y,w,h,dx,dy,img,faction)
     local s = {}
     s.x = x or 0
     s.y = y or 0
@@ -77,6 +82,7 @@ function g.createShot(x,y,w,h,dx,dy,img)
     s.dy = dy or -2
     s.img = img or nil
     --s.angle = angle or 0
+    s.faction = faction or "Player"
     return s
 end
 
@@ -87,18 +93,43 @@ function g.updateShot(s)
     s.y = s.y + s.dy
 
     -- Remove shot if it leaves the screen
-    if(s.y < 0 or s.y >= g.gameHeight) then
+    if(s.y < -16 or s.y >= g.gameHeight) then
         s.delete = true
     end
 
-    -- Destroy enemy if it collides with one
-    for i,e in ipairs(g.enemies) do
-        if(g.rectCollision(s,e)) then
-            table.remove(g.enemies,i)
-            s.delete = true
-            g.players[1].score = g.players[1].score + 100
-            --genexplosion(e.x,e.y)
-            --sfx(1,0)
+    -- Damage enemy if it collides with one
+    if(s.faction == "Player") then
+        for i,e in ipairs(g.enemies) do
+            if(g.rectCollision(s,e)) then
+                e.currentHealth = e.currentHealth - 1
+                s.delete = true
+                if(e.currentHealth <= 0) then
+                    table.remove(g.enemies,i)
+                    g.players[1].score = g.players[1].score + 100
+                    if(e.isBoss) then g.isBossDefeated = true end
+                    g.bossDefeatedTime = g.timers.gameTimer
+                    --genexplosion(e.x,e.y)
+                    --sfx(1,0)
+                end
+            end
+        end
+    
+    -- Damage player if it collides with one
+    elseif(s.faction == "Enemy") then
+        for i,p in ipairs(g.players) do
+            if not(p.isInvincible) then
+                if(g.rectCollision(s,p)) then
+                    p.currentHealth = p.currentHealth - 1
+                    p.isInvincible = true
+                    s.delete = true
+                    if(p.currentHealth <= 0) then
+                        p.isDead = true
+                        --g.players[1].score = g.players[1].score + 100
+                        --genexplosion(e.x,e.y)
+                        --sfx(1,0)
+                    end
+                end
+            end
         end
     end
 end

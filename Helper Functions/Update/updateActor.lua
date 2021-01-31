@@ -13,7 +13,10 @@ function updateActor.update(act)
     end
     
     if(act.faction == "Player") then
+        
         for i,p in ipairs(g.players) do
+            
+            -- The player is temporarily invincible when hit
             if(p.isInvincible) then
                 if(p.timers.invincibility >= 60) then
                     p.isInvincible = false
@@ -22,6 +25,20 @@ function updateActor.update(act)
                     p.timers.invincibility = p.timers.invincibility + 1
                 end
             end
+            
+            -- Level up
+            --[[if(p.score < 1000) then
+                p.level = 1
+            elseif(p.score < 3000 and p.level == 1) then
+                p.level = 2
+                p.maximumHealth = 6
+                p.currentHealth = p.maximumHealth
+                p.shot = {x=p.x+p.w/2,y=p.y,w=16,h=16,img=g.images.playerShots.fireBall2}
+            elseif(p.score >= 3000 and p.level == 2) then
+                p.level = 3
+                p.maximumHealth = 7
+                p.currentHealth = p.maximumHealth
+            end]]
         end
     end
     

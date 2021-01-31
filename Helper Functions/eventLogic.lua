@@ -30,7 +30,7 @@ function eventLogic.event(event)
     elseif(event.name == "Create Shot") then
         -- Create a shot if possible
         if(event.act.canShoot) then
-            table.insert(event.shotTable,g.createShot(event.act.x+event.act.w/2,event.act.y))
+            table.insert(event.shotTable,g.createShot(event.act.x+event.act.w/2-event.shot.w/2,event.act.y,event.shot.w,event.shot.h,0,-2,event.shot.img))
             event.act.canShoot = false
         end
     end

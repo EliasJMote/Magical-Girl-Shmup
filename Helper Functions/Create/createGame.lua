@@ -23,12 +23,17 @@ local createGame = {}
 
         -- Star field table
         g.stars = {}
-
+        
+        -- Tile table
+        --g.tiles = {}
+        
+        -- The level complete animation is disabled by default
         g.levelCompleteAnimation = false
 
         g.timers = {}
         g.timers.titleTimer = 0
         g.timers.gameTimer = 0
+        g.timers.deathTimer = 0
         g.timers.levelCompleteAnimationTimer = 0
     end
 
